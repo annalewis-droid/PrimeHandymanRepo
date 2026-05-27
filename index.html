@@ -1,233 +1,230 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Handyman Service LLC | Premium Home Repairs & Maintenance</title>
-
+    <title>Prime Handyman Service LLC | Premium Arizona Home Repairs</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'prime-navy': '#1e3a5f',
-                        'prime-gold': '#d4a84b',
+                        primenavy: '#1e3a5f',
+                        primegold: '#d4a84b',
                     }
                 }
             }
         }
     </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
-<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
-
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <header class="sticky top-0 z-50 bg-primenavy text-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <img src="./logo.png" alt="Prime Handyman Service LLC Logo" class="h-12 w-auto object-contain">
-                <span class="text-xl font-bold text-prime-navy tracking-tight">Prime Handyman</span>
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl font-black tracking-wider text-primegold">PRIME</span>
+                <span class="text-xs font-semibold tracking-widest text-gray-300 block uppercase border-l border-gray-500 pl-2">Handyman</span>
             </div>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#services" class="text-gray-600 hover:text-prime-navy font-medium transition">Our Services</a>
-                <a href="#contact"
-                    class="bg-prime-navy text-white px-5 py-2.5 rounded-md font-medium hover:bg-opacity-90 transition shadow-sm border border-transparent hover:border-prime-gold">Get
-                    a Quote</a>
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#hero" class="hover:text-primegold transition-colors">Home</a>
+                <a href="#services" class="hover:text-primegold transition-colors">Our Services</a>
+                <a href="#contact" class="hover:text-primegold transition-colors">Request Service</a>
             </nav>
+            <div>
+                <a href="#contact" class="bg-primegold hover:bg-yellow-600 text-primenavy font-bold px-5 py-2.5 rounded shadow transition-all duration-200">
+                    Get an Estimate
+                </a>
+            </div>
         </div>
     </header>
 
-    <main class="flex-grow">
-        <section class="bg-prime-navy text-white py-20 lg:py-32 relative overflow-hidden">
-            <div
-                class="absolute inset-0 bg-opacity-10 bg-[radial-gradient(#d4a84b_1px,transparent_1px)] [background-size:16px_16px]">
-            </div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="lg:w-2/3">
-                    <span class="text-prime-gold uppercase tracking-widest font-semibold text-sm block mb-3">Premium
-                        Home Care & Upgrades</span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6"> Professional
-                        Property Solutions, <span class="text-prime-gold">Executed Perfectly.</span> </h1>
-                    <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl"> From urgent residential repairs to
-                        seamless commercial installations, Prime Handyman Service LLC delivers elite craftsmanship to
-                        homeowners across Arizona. </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#contact"
-                            class="bg-prime-gold text-prime-navy text-center font-bold px-8 py-4 rounded-md shadow-md hover:bg-white transition">
-                            Schedule a Service </a>
-                        <a href="#services"
-                            class="border border-gray-400 text-center text-white font-medium px-8 py-4 rounded-md hover:bg-white hover:text-prime-navy transition">
-                            Explore Services </a>
-                    </div>
+    <section id="hero" class="relative bg-primenavy text-white overflow-hidden py-24 lg:py-32">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4a84b_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="text-primegold font-bold tracking-widest uppercase text-sm block">Premium Commercial & Residential Care</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none">
+                    Elite Craftsmanship. <br><span class="text-primegold">Dependable Service.</span>
+                </h1>
+                <p class="text-lg text-gray-300 max-w-xl mx-auto lg:mx-0">
+                    Prime Handyman Service LLC delivers pristine repairs, expert installations, and routine property upgrades across Arizona. Built on transparency, precision, and structural integrity.
+                </p>
+                <div class="pt-4 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a href="#contact" class="bg-primegold hover:bg-yellow-600 text-primenavy font-extrabold px-8 py-4 rounded-lg shadow-lg text-center transition-all">
+                        Book Your Lead Technician
+                    </a>
+                    <a href="#services" class="border border-white hover:bg-white hover:text-primenavy px-8 py-4 rounded-lg font-bold text-center transition-all">
+                        Explore Services
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <section id="services" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-3xl sm:text-4xl font-bold text-prime-navy mb-4">Our Professional Expertise</h2>
-                    <div class="w-24 h-1 bg-prime-gold mx-auto mb-6"></div>
-                    <p class="text-gray-600">We handle your property to-do list with precision, high-quality materials,
-                        and exceptional customer service.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="p-8 border border-gray-100 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition">
-                        <div
-                            class="w-12 h-12 bg-prime-navy rounded-lg flex items-center justify-center text-prime-gold mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-prime-navy mb-3">General Home Repairs</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Drywall patching, door adjustments, hardware
-                            upgrades, and structural touch-ups executed to flawless standards.</p>
-                    </div>
-
-                    <div class="p-8 border border-gray-100 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition">
-                        <div
-                            class="w-12 h-12 bg-prime-navy rounded-lg flex items-center justify-center text-prime-gold mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-prime-navy mb-3">Smart Appliance Installations</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Mounting modern smart TVs, configuring custom
-                            lighting fixtures, smart thermostats, and appliance hookups.</p>
-                    </div>
-
-                    <div class="p-8 border border-gray-100 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition">
-                        <div
-                            class="w-12 h-12 bg-prime-navy rounded-lg flex items-center justify-center text-prime-gold mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-prime-navy mb-3">Carpentry & Assembly</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Precision furniture assembly, cabinet/shelving
-                            installation, premium trim work, and detailed baseboard integration.</p>
-                    </div>
+            <div class="hidden lg:flex justify-center">
+                <div class="border-2 border-primegold/30 p-8 rounded-2xl bg-slate-900/40 backdrop-blur max-w-md w-full shadow-2xl">
+                    <h3 class="text-2xl font-bold text-primegold mb-4">The Prime Promise</h3>
+                    <ul class="space-y-3 text-gray-300 font-medium">
+                        <li class="flex items-center gap-2">✓ Insured & Background Checked</li>
+                        <li class="flex items-center gap-2">✓ Guaranteed 2-Hour Arrival Windows</li>
+                        <li class="flex items-center gap-2">✓ Transparent Upfront Pricing</li>
+                        <li class="flex items-center gap-2">✓ Free Clean-Up Post-Service</li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="py-20 bg-gray-50 border-t border-gray-200">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden p-8 sm:p-12">
-                    <div class="text-center mb-10">
-                        <h2 class="text-3xl font-bold text-prime-navy mb-2">Request an Estimate</h2>
-                        <p class="text-gray-500 text-sm">Fill out the secure form below. Our operations team will
-                            respond within 2-4 business hours.</p>
-                    </div>
-                    <form id="leadForm" class="space-y-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name
-                                    *</label>
-                                <input type="text" id="name" required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address
-                                    *</label>
-                                <input type="email" id="email" required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number
-                                    *</label>
-                                <input type="tel" id="phone" required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition">
-                            </div>
-                            <div>
-                                <label for="zip" class="block text-sm font-semibold text-gray-700 mb-2">ZIP Code
-                                    *</label>
-                                <input type="text" id="zip" pattern="[0-9]{5}" required title="Five digit zip code"
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Project Details
-                                & Scope *</label>
-                            <textarea id="message" rows="4" required
-                                placeholder="Please describe the repairs or installation services you need..."
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit" id="submitBtn"
-                                class="w-full bg-prime-navy text-white font-bold py-4 rounded-lg shadow-md hover:bg-opacity-95 focus:outline-none focus:ring-4 focus:ring-blue-200 transition flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                                <span id="btnText">Submit Request</span>
-                                <span id="spinner"
-                                    class="hidden animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
-                            </button>
-                        </div>
-                    </form>
-                    <div id="formAlert"
-                        class="mt-6 hidden p-4 rounded-lg text-sm font-medium transition-all duration-300"></div>
+    <section id="services" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-primenavy tracking-tight">Our Professional Capabilities</h2>
+                <div class="h-1 w-20 bg-primegold mx-auto rounded"></div>
+                <p class="text-gray-600">No project is too small or complex for our specialized team. We treat your property with absolute respect.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-8 bg-gray-50 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-primenavy text-primegold rounded-lg flex items-center justify-center font-bold text-xl mb-6">🛠️</div>
+                    <h3 class="text-xl font-bold text-primenavy mb-2">General Property Repairs</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Drywall patching, door adjustments, finish carpentry, fencing, and systematic hardware upgrades.</p>
+                </div>
+                <div class="p-8 bg-gray-50 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-primenavy text-primegold rounded-lg flex items-center justify-center font-bold text-xl mb-6">🔌</div>
+                    <h3 class="text-xl font-bold text-primenavy mb-2">Smart Fixture Installations</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Mounting television systems, ceiling fans, smart lighting architectures, and premium safety features.</p>
+                </div>
+                <div class="p-8 bg-gray-50 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-primenavy text-primegold rounded-lg flex items-center justify-center font-bold text-xl mb-6">🚰</div>
+                    <h3 class="text-xl font-bold text-primenavy mb-2">Light Plumbing Upgrades</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Faucet modernizations, garbage disposal replacements, valve changes, and showerhead installations.</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="bg-prime-navy text-gray-400 py-12 border-t border-gray-800">
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <p class="text-sm">&copy; 2026 Prime Handyman Service LLC. All rights reserved. Servicing Arizona.</p>
-            <p class="text-xs text-gray-500">Domain: <a href="https://prime-handyman-az.com"
-                    class="hover:underline text-prime-gold">prime-handyman-az.com</a></p>
+    <section id="contact" class="py-20 lg:py-28 bg-gradient-to-b from-gray-50 to-gray-100 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+
+                <div class="bg-primenavy p-8 sm:p-12 text-center relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:12px_12px]"></div>
+                    <span class="text-primegold uppercase tracking-widest text-xs font-bold bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">PrimeOps Secure Portal</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 tracking-tight">Request an Elite Estimate</h2>
+                    <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-xl mx-auto">Tell us about your property project. Our service coordinators review submissions in real-time.</p>
+                </div>
+
+                <form id="leadForm" class="p-8 sm:p-12 space-y-8">
+
+                    <div class="space-y-4">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-400">Step 1: Select Primary Service Needed</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+                            <label class="relative flex flex-col p-5 bg-white border-2 border-gray-200 rounded-2xl cursor-pointer hover:border-primenavy/40 transition-all duration-200 group">
+                                <input type="radio" name="service_type" value="Repairs" class="sr-only peer" checked>
+                                <span class="absolute top-4 right-4 w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center peer-checked:border-primegold peer-checked:bg-primegold after:content-[''] after:w-2 after:h-2 after:bg-white after:rounded-full after:hidden peer-checked:after:block transition-all"></span>
+                                <span class="text-2xl mb-2 group-hover:scale-110 transition-transform w-fit">🛠️</span>
+                                <span class="font-bold text-primenavy text-base">General Repairs</span>
+                                <span class="text-gray-500 text-xs mt-1">Drywall, doors, carpentry, fencing.</span>
+                                <div class="absolute inset-0 border-2 border-transparent rounded-2xl peer-checked:border-primegold pointer-events-none transition-all"></div>
+                            </label>
+
+                            <label class="relative flex flex-col p-5 bg-white border-2 border-gray-200 rounded-2xl cursor-pointer hover:border-primenavy/40 transition-all duration-200 group">
+                                <input type="radio" name="service_type" value="Installations" class="sr-only peer">
+                                <span class="absolute top-4 right-4 w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center peer-checked:border-primegold peer-checked:bg-primegold after:content-[''] after:w-2 after:h-2 after:bg-white after:rounded-full after:hidden peer-checked:after:block transition-all"></span>
+                                <span class="text-2xl mb-2 group-hover:scale-110 transition-transform w-fit">🔌</span>
+                                <span class="font-bold text-primenavy text-base">Installations</span>
+                                <span class="text-gray-500 text-xs mt-1">TV mounting, fans, smart fixtures.</span>
+                                <div class="absolute inset-0 border-2 border-transparent rounded-2xl peer-checked:border-primegold pointer-events-none transition-all"></div>
+                            </label>
+
+                            <label class="relative flex flex-col p-5 bg-white border-2 border-gray-200 rounded-2xl cursor-pointer hover:border-primenavy/40 transition-all duration-200 group">
+                                <input type="radio" name="service_type" value="Plumbing" class="sr-only peer">
+                                <span class="absolute top-4 right-4 w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center peer-checked:border-primegold peer-checked:bg-primegold after:content-[''] after:w-2 after:h-2 after:bg-white after:rounded-full after:hidden peer-checked:after:block transition-all"></span>
+                                <span class="text-2xl mb-2 group-hover:scale-110 transition-transform w-fit">🚰
+                        </div>
+                        <span class="font-bold text-primenavy text-base">Light Plumbing</span>
+                        <span class="text-gray-500 text-xs mt-1">Faucets, disposals, valve changes.</span>
+                        <div class="absolute inset-0 border-2 border-transparent rounded-2xl peer-checked:border-primegold pointer-events-none transition-all"></div>
+                        </label>
+
+                    </div>
+            </div>
+
+            <hr class="border-gray-100">
+
+            <div class="space-y-6">
+                <label class="block text-xs font-bold uppercase tracking-wider text-gray-400">Step 2: Project & Contact Logistics</label>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="relative">
+                        <input type="text" id="name" required placeholder=" " class="peer w-full px-4 py-4 pt-6 border-2 border-gray-200 rounded-xl bg-gray-50/50 text-gray-900 focus:bg-white focus:border-primenavy focus:ring-4 focus:ring-primenavy/5 outline-none transition-all placeholder-transparent">
+                        <label for="name" class="absolute left-4 top-2 text-xs font-semibold text-gray-400 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primenavy">Full Name *</label>
+                    </div>
+                    <div class="relative">
+                        <input type="email" id="email" required placeholder=" " class="peer w-full px-4 py-4 pt-6 border-2 border-gray-200 rounded-xl bg-gray-50/50 text-gray-900 focus:bg-white focus:border-primenavy focus:ring-4 focus:ring-primenavy/5 outline-none transition-all placeholder-transparent">
+                        <label for="email" class="absolute left-4 top-2 text-xs font-semibold text-gray-400 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primenavy">Email Address *</label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="relative">
+                        <input type="tel" id="phone" required placeholder=" " class="peer w-full px-4 py-4 pt-6 border-2 border-gray-200 rounded-xl bg-gray-50/50 text-gray-900 focus:bg-white focus:border-primenavy focus:ring-4 focus:ring-primenavy/5 outline-none transition-all placeholder-transparent">
+                        <label for="phone" class="absolute left-4 top-2 text-xs font-semibold text-gray-400 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primenavy">Phone Number *</label>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="zip" required pattern="[0-9]{5}" title="Please provide a valid 5-digit ZIP code" placeholder=" " class="peer w-full px-4 py-4 pt-6 border-2 border-gray-200 rounded-xl bg-gray-50/50 text-gray-900 focus:bg-white focus:border-primenavy focus:ring-4 focus:ring-primenavy/5 outline-none transition-all placeholder-transparent">
+                        <label waterproof for="zip" class="absolute left-4 top-2 text-xs font-semibold text-gray-400 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primenavy">Arizona ZIP Code *</label>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <textarea id="message" rows="4" required placeholder=" " class="peer w-full px-4 py-4 pt-6 border-2 border-gray-200 rounded-xl bg-gray-50/50 text-gray-900 focus:bg-white focus:border-primenavy focus:ring-4 focus:ring-primenavy/5 outline-none transition-all placeholder-transparent"></textarea>
+                    <label for="message" class="absolute left-4 top-2 text-xs font-semibold text-gray-400 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:text-xs peer-focus:text-primenavy">Project Scope Detail *</label>
+                </div>
+            </div>
+
+            <div id="formFeedback" class="hidden p-4 rounded-xl font-medium text-sm text-center transition-all duration-300"></div>
+
+            <div>
+                <button type="submit" id="submitBtn" class="w-full bg-primegold hover:bg-yellow-600 text-primenavy font-black py-4 px-6 rounded-xl shadow-lg tracking-wider transition-all duration-200 uppercase text-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base">
+                    Submit Request Secured
+                </button>
+            </div>
+            </form>
+        </div>
+        </div>
+    </section>
+
+    <footer class="bg-primenavy text-gray-400 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+            <p class="text-sm text-white font-semibold">© 2026 Prime Handyman Service LLC. All rights reserved.</p>
+            <p class="text-xs">Serving Phoenix metro and surrounding Arizona areas. Managed via PrimeOps CRM architecture.</p>
         </div>
     </footer>
 
     <script>
-        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+        const SUPABASE_URL = 'https://YOUR_PROJECT_ID.supabase.co';
+        const SUPABASE_ANON_KEY = 'YOUR_PUBLIC_ANON_KEY';
 
-        let supabase = null;
-        if (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
-            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        } else {
-            console.warn("PrimeOps CRM Alert: Supabase URL and Anon Key placeholders are active.");
-        }
+        const { createClient } = supabase;
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        const leadForm = document.getElementById('leadForm');
+        const form = document.getElementById('leadForm');
         const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const spinner = document.getElementById('spinner');
-        const formAlert = document.getElementById('formAlert');
+        const feedback = document.getElementById('formFeedback');
 
-        leadForm.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (!supabase) {
-                showAlert('Configuration Mode: Connect your Supabase URL and Anon Key to enable live database storage.', 'error');
-                return;
-            }
 
-            setLoadingState(true);
-            hideAlert();
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Transmitting to PrimeOps...';
+            feedback.className = 'hidden';
 
-            const submissionData = {
+            // Catching the value of the custom interactive service cards
+            const selectedService = document.querySelector('input[name="service_type"]:checked').value;
+
+            const leadData = {
+                service_requested: selectedService,
                 name: document.getElementById('name').value.trim(),
                 email: document.getElementById('email').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
@@ -237,42 +234,25 @@
             };
 
             try {
-                const { error } = await supabase.from('contact_submissions').insert([submissionData]);
+                const { error } = await supabaseClient
+                    .from('contact_submissions')
+                    .insert([leadData]);
+
                 if (error) throw error;
-                showAlert('Thank you! Your request has been safely transmitted.', 'success');
-                leadForm.reset();
+
+                feedback.innerText = '✓ Success! Your premium request has been securely compiled into PrimeOps CRM.';
+                feedback.className = 'p-4 rounded-xl font-medium text-sm text-center bg-green-50 text-green-800 border border-green-200 block';
+                form.reset();
+
             } catch (err) {
-                showAlert(`Submission error: ${err.message}`, 'error');
+                console.error('CRM Transmission Failure:', err.message);
+                feedback.innerText = '⚠️ Connection Error: Unable to store lead. Please confirm your Supabase credentials or try again.';
+                feedback.className = 'p-4 rounded-xl font-medium text-sm text-center bg-red-50 text-red-800 border border-red-200 block';
             } finally {
-                setLoadingState(false);
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Submit Request Secured';
             }
         });
-
-        function setLoadingState(isLoading) {
-            submitBtn.disabled = isLoading;
-            if (isLoading) {
-                btnText.textContent = "Processing...";
-                spinner.classList.remove('hidden');
-            } else {
-                btnText.textContent = "Submit Request";
-                spinner.classList.add('hidden');
-            }
-        }
-
-        function showAlert(message, type) {
-            formAlert.textContent = message;
-            formAlert.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'border-green-200', 'bg-red-100', 'text-red-800', 'border-red-200');
-            if (type === 'success') {
-                formAlert.classList.add('bg-green-100', 'text-green-800', 'border', 'border-green-200');
-            } else {
-                formAlert.classList.add('bg-red-100', 'text-red-800', 'border', 'border-red-200');
-            }
-        }
-
-        function hideAlert() {
-            formAlert.classList.add('hidden');
-        }
     </script>
 </body>
-
 </html>
