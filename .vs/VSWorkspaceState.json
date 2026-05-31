@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\supabase",
+    "\\supabase\\migrations",
+    "\\supabase\\snippets"
   ],
   "PreviewInSolutionExplorer": false
 }
