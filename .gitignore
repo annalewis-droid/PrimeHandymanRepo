@@ -1,0 +1,7 @@
+# Ignore Visual Studio temporary cache and indexing files
+.vs/
+*.vsidx
+*.slnx
+
+# Ignore local Supabase generated data (optional but recommended)
+supabase/.branches/
