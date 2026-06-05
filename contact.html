@@ -1,11 +1,121 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Inquiry | Prime Handyman</title>
+    <!-- Include the official Supabase CDN Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        /* Minimal styling for UI State illustration */
+        .hidden { display: none; }
+        .error-msg { color: #ef4444; margin-top: 10px; }
+        .success-msg { color: #10b981; margin-top: 10px; font-weight: bold; }
+        button:disabled, input:disabled, textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
 </head>
 <body>
 
+    <div class="form-container">
+        <h2>Submit an Inquiry</h2>
+        
+        <!-- Native HTML5 Two-Tier Validation Enabled -->
+        <form id="contactForm">
+            <div>
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" required autocomplete="given-name">
+            </div>
+            <div>
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" required autocomplete="family-name">
+            </div>
+            <div>
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" required autocomplete="email">
+            </div>
+            <div>
+                <label for="phone">Phone Number (Optional)</label>
+                <input type="tel" id="phone" autocomplete="tel">
+            </div>
+            <div>
+                <label for="message">Message *</label>
+                <textarea id="message" required rows="4"></textarea>
+            </div>
+
+            <!-- UI State Feedback Elements -->
+            <button type="submit" id="submitBtn">Send Message</button>
+            <div id="successState" class="success-msg hidden">Thank you! Your inquiry has been received successfully.</div>
+            <div id="failureState" class="error-msg hidden">Something went wrong. Please try again or contact support directly.</div>
+        </form>
+    </div>
+
+    <script>
+        // 1. Initialize Supabase Client
+        // Exposed safely on Cloudflare Pages; Security is handled by DB Row-Level Security (RLS)
+        const SUPABASE_URL = 'https://your-supabase-project.supabase.co'; 
+        const SUPABASE_ANON_KEY = 'your-actual-public-anon-key-here';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // 2. DOM Elements Mapping
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successState = document.getElementById('successState');
+        const failureState = document.getElementById('failureState');
+        const formInputs = form.querySelectorAll('input, textarea, button');
+
+        // 3. Form Submission Event Handler
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // UI State: Submitting (Lock fields down to prevent duplicate clicks)
+            toggleFormState(true);
+            successState.classList.add('hidden');
+            failureState.classList.add('hidden');
+
+            // Data Contract Realignment: Concatenate UI fields to singular customer_name string
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const customerName = `${firstName} ${lastName}`.trim();
+
+            const payload = {
+                brand_slug: 'prime-handyman', // Multi-tenant tracking layout rule
+                customer_name: customerName,
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim() || null,
+                message: document.getElementById('message').value.trim()
+            };
+
+            // Asynchronous Execution Block
+            try {
+                const { error } = await _supabase
+                    .from('contact_submissions')
+                    .insert([payload]);
+
+                if (error) throw error;
+
+                // UI State: Success (Clear form completely and notify user)
+                form.reset();
+                successState.classList.remove('hidden');
+
+            } catch (err) {
+                // UI State: Failure (Graceful degradation, non-technical UI warning, safe dev logging)
+                console.error('[Supabase Integration Error]:', err.message || err);
+                failureState.classList.remove('hidden');
+            } finally {
+                // Release form input lock
+                toggleFormState(false);
+            }
+        });
+
+        // Helper function to handle batch UI state switching
+        function toggleFormState(disabled) {
+            formInputs.forEach(input => input.disabled = disabled);
+            if (disabled) {
+                submitBtn.textContent = 'Sending...';
+            } else {
+                submitBtn.textContent = 'Send Message';
+            }
+        }
+    </script>
 </body>
 </html>
