@@ -1,236 +1,818 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Handyman Service LLC | Premium Home Repairs & Maintenance</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prime Handyman Service LLC | Glendale, AZ Handyman</title>
+  <meta name="description" content="Prime Handyman Service LLC provides veteran-owned handyman repairs, installations, maintenance, and home upgrades in Glendale, AZ and the Greater West Valley. Text photos for a fast estimate." />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'prime-navy': '#1e3a5f',
-                        'prime-gold': '#d4a84b',
-                    }
-                }
-            }
-        }
-    </script>
+  <meta property="og:title" content="Prime Handyman Service LLC | Everyday Fixes. Prime Quality." />
+  <meta property="og:description" content="Veteran-owned handyman service in Glendale, AZ. Transparent pricing, clean work, photo-based estimates, and a 30-day labor workmanship warranty." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://prime-handyman-az.com" />
+  <meta property="og:image" content="/assets/Pic%20of%20PHS%20Logo%202026.jpg" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --midnight: #112244;
+      --gold: #D4AF37;
+      --steel: #2B5B84;
+      --white: #FFFFFF;
+      --ink: #172033;
+      --muted: #5F6B7A;
+      --soft: #F5F7FA;
+      --line: rgba(17,34,68,.14);
+      --shadow: 0 20px 60px rgba(17,34,68,.14);
+      --radius: 22px;
+      --max: 1160px;
+    }
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.55;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .eyebrow {
+      color: var(--gold);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .78rem;
+    }
+    h1, h2, h3 { line-height: 1.05; margin: 0; color: var(--midnight); }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.7rem); letter-spacing: -.06em; }
+    h2 { font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -.04em; }
+    h3 { font-size: 1.25rem; }
+    p { margin: 0; }
+    .lead { font-size: clamp(1.05rem, 2vw, 1.28rem); color: #DDE6F5; max-width: 650px; }
+    .section { padding: 86px 0; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 900;
+      border: 2px solid transparent;
+      transition: .2s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--midnight);
+      box-shadow: 0 16px 40px rgba(212,175,55,.28);
+    }
+    .btn-primary:hover { transform: translateY(-2px); background: #e3c154; }
+    .btn-secondary {
+      color: var(--white);
+      border-color: rgba(255,255,255,.42);
+      background: rgba(255,255,255,.08);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,.16); }
+    .btn-dark {
+      background: var(--midnight);
+      color: var(--white);
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    .topbar {
+      background: var(--midnight);
+      color: var(--white);
+      font-size: .92rem;
+      padding: 9px 0;
+    }
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .topbar strong { color: var(--gold); }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 950;
+      color: var(--midnight);
+    }
+    .brand img { width: 54px; height: 54px; object-fit: contain; }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--midnight);
+      font-weight: 800;
+      font-size: .94rem;
+    }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(212,175,55,.28), transparent 28%),
+        linear-gradient(135deg, var(--midnight), #071125 78%);
+      color: var(--white);
+      padding: 92px 0 72px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero h1 { color: var(--white); margin: 14px 0 18px; }
+    .hero-copy { display: grid; gap: 22px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .point {
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.07);
+      border-radius: 16px;
+      padding: 14px;
+      color: #EAF0FA;
+      font-weight: 800;
+    }
+    .hero-card {
+      position: relative;
+      border-radius: 32px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .owner-card {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      align-items: center;
+      background: var(--white);
+      color: var(--ink);
+      border-radius: 24px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .owner-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+    .owner-card strong { color: var(--midnight); display: block; font-size: 1.1rem; }
+    .logo-medallion {
+      background: #fff;
+      border-radius: 28px;
+      padding: 20px;
+    }
+
+    .trust-strip {
+      background: var(--soft);
+      border-bottom: 1px solid var(--line);
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .trust-item {
+      background: var(--white);
+      padding: 22px;
+    }
+    .trust-item b { display: block; color: var(--midnight); font-size: 1.05rem; }
+
+    .split {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .copy-stack { display: grid; gap: 18px; }
+    .muted { color: var(--muted); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: var(--white);
+      box-shadow: 0 12px 34px rgba(17,34,68,.06);
+    }
+    .card .icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(212,175,55,.18);
+      color: var(--midnight);
+      font-weight: 950;
+      margin-bottom: 14px;
+    }
+    .card ul {
+      padding-left: 18px;
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .estimate-box {
+      background:
+        radial-gradient(circle at 90% 0%, rgba(212,175,55,.26), transparent 24%),
+        var(--midnight);
+      color: var(--white);
+      border-radius: 34px;
+      padding: clamp(28px, 5vw, 54px);
+      display: grid;
+      grid-template-columns: 1fr .85fr;
+      gap: 34px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    .estimate-box h2 { color: var(--white); }
+    .steps {
+      display: grid;
+      gap: 14px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .num {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--midnight);
+      font-weight: 950;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+    }
+    .gallery figure {
+      margin: 0;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: 0 12px 30px rgba(17,34,68,.08);
+    }
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .gallery figcaption {
+      padding: 12px 14px;
+      font-weight: 850;
+      color: var(--midnight);
+      font-size: .93rem;
+    }
+
+    .pricing {
+      background: var(--soft);
+    }
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+    .price-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+    }
+    .price {
+      font-size: 2.4rem;
+      color: var(--midnight);
+      font-weight: 950;
+      letter-spacing: -.04em;
+      margin: 8px 0;
+    }
+
+    .faq {
+      display: grid;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    details {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      background: var(--white);
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 950;
+      color: var(--midnight);
+    }
+    details p { margin-top: 10px; color: var(--muted); }
+
+    .final {
+      background: linear-gradient(135deg, var(--midnight), var(--steel));
+      color: var(--white);
+      text-align: center;
+    }
+    .final h2 { color: var(--white); }
+    .final p { color: #E8EEF8; max-width: 720px; margin: 16px auto 0; }
+
+    footer {
+      background: #071125;
+      color: #DDE6F5;
+      padding: 38px 0 96px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr .8fr;
+      gap: 26px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 950;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .footer-logo img { width: 52px; height: 52px; object-fit: contain; }
+    .compliance {
+      margin-top: 16px;
+      font-size: .84rem;
+      color: #AAB7CA;
+    }
+
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      z-index: 80;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 20px;
+      background: rgba(7,17,37,.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.25);
+    }
+    .mobile-cta a {
+      flex: 1;
+      min-height: 52px;
+    }
+
+    @media (max-width: 950px) {
+      nav { display: none; }
+      .hero-grid, .split, .estimate-box { grid-template-columns: 1fr; }
+      .hero-points, .trust-grid, .cards, .price-grid, .footer-grid { grid-template-columns: 1fr 1fr; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px) {
+      .section { padding: 62px 0; }
+      .nav-actions .btn-secondary { display: none; }
+      .hero { padding-top: 58px; }
+      .hero-points, .trust-grid, .cards, .price-grid, .footer-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      .owner-card { grid-template-columns: 86px 1fr; }
+      .owner-card img { width: 86px; height: 86px; }
+      .mobile-cta { display: flex; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Prime Handyman Service LLC",
+    "url": "https://prime-handyman-az.com",
+    "telephone": "+1-623-227-8884",
+    "email": "bryan.lewis@prime-handyman-az.com",
+    "slogan": "Everyday Fixes. Prime Quality.",
+    "founder": "Bryan Lewis",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "6434 W Cavalier Dr",
+      "addressLocality": "Glendale",
+      "addressRegion": "AZ",
+      "postalCode": "85301",
+      "addressCountry": "US"
+    },
+    "areaServed": ["Glendale AZ", "Greater West Valley AZ"],
+    "priceRange": "$$"
+  }
+  </script>
 </head>
 
-<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+<body>
+  <div class="topbar">
+    <div class="container">
+      <span><strong>Veteran-Owned & Operated</strong> handyman service in Glendale, AZ</span>
+      <span>Text or call: <strong>623-227-8884</strong></span>
+    </div>
+  </div>
 
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <img src="./logo.png" alt="Prime Handyman Service LLC Logo" class="h-12 w-auto object-contain">
-                <span class="text-xl font-bold text-prime-navy tracking-tight">Prime Handyman</span>
-            </div>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#services" class="text-gray-600 hover:text-prime-navy font-medium transition">Our Services</a>
-                <a href="#contact" class="bg-prime-navy text-white px-5 py-2.5 rounded-md font-medium hover:bg-opacity-90 transition shadow-sm border border-transparent hover:border-prime-gold">Get a Quote</a>
-            </nav>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Prime Handyman Service home">
+        <img src="/assets/PHS%20Transparent%20logo.png" alt="Prime Handyman Service LLC logo" />
+        <span>Prime Handyman Service LLC</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#work">Work Photos</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-dark" href="tel:+16232278884">Call Now</a>
+        <a class="btn btn-primary" href="sms:+16232278884?&body=Hi%20Prime%20Handyman%20Service%2C%20I%27d%20like%20an%20estimate.%20My%20ZIP%20code%20is%3A%20">Text Photos</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Everyday Fixes. Prime Quality.</div>
+          <h1>Glendale’s Veteran-Owned Handyman for Repairs Done Right.</h1>
+          <p class="lead">
+            From drywall patches and fixture swaps to furniture assembly, door repairs, TV mounting, and rental property punch lists — Prime Handyman Service LLC helps homeowners and investors get small projects handled with clean work, clear communication, and no pricing games.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="sms:+16232278884?&body=Hi%20Prime%20Handyman%20Service%2C%20I%27d%20like%20an%20estimate.%20My%20ZIP%20code%20is%3A%20">Text Photos for Estimate</a>
+            <a class="btn btn-secondary" href="tel:+16232278884">Call 623-227-8884</a>
+          </div>
+
+          <div class="hero-points" aria-label="Prime service highlights">
+            <div class="point">30-minute arrival text</div>
+            <div class="point">Before & after photos</div>
+            <div class="point">30-day labor warranty</div>
+          </div>
         </div>
-    </header>
 
-    <main class="flex-grow">
-        <section class="bg-prime-navy text-white py-20 lg:py-32 relative overflow-hidden">
-            <div class="absolute inset-0 bg-opacity-10 bg-[radial-gradient(#d4a84b_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="lg:w-2/3">
-                    <span class="text-prime-gold uppercase tracking-widest font-semibold text-sm block mb-3">Premium Home Care & Upgrades</span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6"> Professional Property Solutions, <span class="text-prime-gold">Executed Perfectly.</span> </h1>
-                    <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl"> From urgent residential repairs to seamless commercial installations, Prime Handyman Service LLC delivers elite craftsmanship to homeowners across Arizona. </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#contact" class="bg-prime-gold text-prime-navy text-center font-bold px-8 py-4 rounded-md shadow-md hover:bg-white transition"> Schedule a Service </a>
-                        <a href="#services" class="border border-gray-400 text-center text-white font-medium px-8 py-4 rounded-md hover:bg-white hover:text-prime-navy transition"> Explore Services </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-3xl sm:text-4xl font-bold text-prime-navy mb-4">Our Professional Expertise</h2>
-                    <div class="w-24 h-1 bg-prime-gold mx-auto mb-6"></div>
-                    <p class="text-gray-600">We handle your property to-do list with precision, high-quality materials, and exceptional customer service.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="p-8 border border-gray-100 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-prime-navy rounded-lg flex items-center justify-center text-prime-gold mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-prime-navy mb-3">General Home Repairs</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Drywall patching, door adjustments, hardware upgrades, and structural touch-ups executed to flawless standards.</p>
-                    </div>
-
-                    <div class="p-8 border border-gray-100 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-prime-navy rounded-lg flex items-center justify-center text-prime-gold mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-prime-navy mb-3">Smart Appliance Installations</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Mounting modern smart TVs, configuring custom lighting fixtures, smart thermostats, and appliance hookups.</p>
-                    </div>
-
-                    <div class="p-8 border border-gray-100 rounded-xl bg-gray-50 shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 bg-prime-navy rounded-lg flex items-center justify-center text-prime-gold mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-prime-navy mb-3">Carpentry & Assembly</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Precision furniture assembly, cabinet/shelving installation, premium trim work, and detailed baseboard integration.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-20 bg-gray-50 border-t border-gray-200">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden p-8 sm:p-12">
-                    <div class="text-center mb-10">
-                        <h2 class="text-3xl font-bold text-prime-navy mb-2">Request an Estimate</h2>
-                        <p class="text-gray-500 text-sm">Fill out the secure form below. Our operations team will respond within 2-4 business hours.</p>
-                    </div>
-                    <form id="leadForm" class="space-y-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
-                                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
-                                <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
-                                <input type="tel" id="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition">
-                            </div>
-                            <div>
-                                <label for="zip" class="block text-sm font-semibold text-gray-700 mb-2">ZIP Code *</label>
-                                <input type="text" id="zip" pattern="[0-9]{5}" required title="Five digit zip code" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Project Details & Scope *</label>
-                            <textarea id="message" rows="4" required placeholder="Please describe the repairs or installation services you need..." class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-prime-navy focus:border-prime-navy transition"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit" id="submitBtn" class="w-full bg-prime-navy text-white font-bold py-4 rounded-lg shadow-md hover:bg-opacity-95 focus:outline-none focus:ring-4 focus:ring-blue-200 transition flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                                <span id="btnText">Submit Request</span>
-                                <span id="spinner" class="hidden animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
-                            </button>
-                        </div>
-                    </form>
-                    <div id="formAlert" class="mt-6 hidden p-4 rounded-lg text-sm font-medium transition-all duration-300"></div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-prime-navy text-gray-400 py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <p class="text-sm">&copy; 2026 Prime Handyman Service LLC. All rights reserved. Servicing Arizona.</p>
-            <p class="text-xs text-gray-500">Domain: <a href="https://prime-handyman-az.com" class="hover:underline text-prime-gold">prime-handyman-az.com</a></p>
+        <div class="hero-card">
+          <div class="logo-medallion">
+            <img src="/assets/Pic%20of%20PHS%20Logo%202026.jpg" alt="Prime Handyman Service Glendale Arizona badge logo" />
+          </div>
+          <div class="owner-card">
+            <img src="/assets/bryan-lewis-owner.jpg" alt="Prime Handyman Service founder portrait" />
+            <p>
+              <strong>Bryan Lewis</strong>
+              Glendale native, U.S. Military Veteran, and founder/field operations manager bringing 17+ years of skilled-trade experience and disciplined job-site standards to every project.
+            </p>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    <section class="trust-strip section">
+      <div class="container trust-grid">
+        <div class="trust-item"><b>Transparent Pricing</b><span>$139 service call includes first full hour.</span></div>
+        <div class="trust-item"><b>At-Cost Materials</b><span>Documented material cost with no hidden markup.</span></div>
+        <div class="trust-item"><b>Clean Worksites</b><span>Furniture protection and careful cleanup.</span></div>
+        <div class="trust-item"><b>West Valley Local</b><span>Serving Glendale and the Greater West Valley.</span></div>
+      </div>
+    </section>
 
-        let supabase = null;
-        if (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
-            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        } else {
-            console.warn("PrimeOps CRM Alert: Supabase URL and Anon Key placeholders are active.");
-        }
+    <section class="section">
+      <div class="container split">
+        <div class="copy-stack">
+          <div class="eyebrow">Why homeowners call Prime</div>
+          <h2>Small repairs should not become another full-time job.</h2>
+        </div>
+        <div class="copy-stack muted">
+          <p>
+            You already have enough on your plate. The loose toilet, damaged drywall, unfinished cabinet, cracked exterior patch, or wall-mounted TV project should not take over your weekend.
+          </p>
+          <p>
+            Prime Handyman Service LLC is built for busy homeowners, elderly homeowners, rental owners, and property investors who need a reliable professional who communicates clearly, shows up prepared, documents the work, and leaves the space ready to use.
+          </p>
+        </div>
+      </div>
+    </section>
 
-        const leadForm = document.getElementById('leadForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const spinner = document.getElementById('spinner');
-        const formAlert = document.getElementById('formAlert');
+    <section id="services" class="section" style="background: var(--soft);">
+      <div class="container">
+        <div class="copy-stack" style="max-width: 780px;">
+          <div class="eyebrow">Services</div>
+          <h2>Repairs, installations, upgrades, and property punch lists.</h2>
+          <p class="muted">
+            We focus on maintenance, upgrades, itemized repairs, direct like-for-like replacements where permitted, and non-structural handyman work. Permit-required work or major trade work is referred to the appropriate licensed contractor.
+          </p>
+        </div>
 
-        leadForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (!supabase) {
-                showAlert('Configuration Mode: Connect your Supabase URL and Anon Key to enable live database storage.', 'error');
-                return;
-            }
+        <div class="cards">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Drywall, Paint & Finish Work</h3>
+            <ul>
+              <li>Drywall patching and texture matching</li>
+              <li>Stress crack repairs</li>
+              <li>Interior paint touch-ups and trim</li>
+              <li>Exterior coating touch-ups</li>
+            </ul>
+          </article>
 
-            setLoadingState(true);
-            hideAlert();
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Installations & Assembly</h3>
+            <ul>
+              <li>TV mounts and wall hardware</li>
+              <li>Cabinet and furniture assembly</li>
+              <li>Murphy beds and storage systems</li>
+              <li>Door hardware and locksets</li>
+            </ul>
+          </article>
 
-            const submissionData = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                phone: document.getElementById('phone').value.trim(),
-                zip_code: document.getElementById('zip').value.trim(),
-                message: document.getElementById('message').value.trim(),
-                created_at: new Date().toISOString()
-            };
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Fixtures & Home Updates</h3>
+            <ul>
+              <li>Faucets, toilets, and disposals</li>
+              <li>Like-for-like light fixtures</li>
+              <li>Ceiling fans and smart switches</li>
+              <li>Weather stripping and window tuning</li>
+            </ul>
+          </article>
 
-            try {
-                const { error } = await supabase.from('contact_submissions').insert([submissionData]);
-                if (error) throw error;
-                showAlert('Thank you! Your request has been safely transmitted.', 'success');
-                leadForm.reset();
-            } catch (err) {
-                showAlert(`Submission error: ${err.message}`, 'error');
-            } finally {
-                setLoadingState(false);
-            }
-        });
+          <article class="card">
+            <div class="icon">04</div>
+            <h3>Flooring, Trim & Carpentry</h3>
+            <ul>
+              <li>LVP, laminate, and tile repairs</li>
+              <li>Baseboard integrations</li>
+              <li>Cabinet hardware adjustments</li>
+              <li>Custom trim repairs</li>
+            </ul>
+          </article>
 
-        function setLoadingState(isLoading) {
-            submitBtn.disabled = isLoading;
-            if (isLoading) {
-                btnText.textContent = "Processing...";
-                spinner.classList.remove('hidden');
-            } else {
-                btnText.textContent = "Submit Request";
-                spinner.classList.add('hidden');
-            }
-        }
+          <article class="card">
+            <div class="icon">05</div>
+            <h3>Exterior Maintenance</h3>
+            <ul>
+              <li>Concrete patches and pavers</li>
+              <li>Gate and fencing restorations</li>
+              <li>Pressure washing</li>
+              <li>Misting and irrigation timer support</li>
+            </ul>
+          </article>
 
-        function showAlert(message, type) {
-            formAlert.textContent = message;
-            formAlert.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'border-green-200', 'bg-red-100', 'text-red-800', 'border-red-200');
-            if (type === 'success') {
-                formAlert.classList.add('bg-green-100', 'text-green-800', 'border', 'border-green-200');
-            } else {
-                formAlert.classList.add('bg-red-100', 'text-red-800', 'border', 'border-red-200');
-            }
-        }
+          <article class="card">
+            <div class="icon">06</div>
+            <h3>Smart Home & Seasonal</h3>
+            <ul>
+              <li>Smart locks and security cameras</li>
+              <li>Low-voltage support</li>
+              <li>Holiday lighting setup</li>
+              <li>Post-season takedown</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        function hideAlert() {
-            formAlert.classList.add('hidden');
-        }
-    </script>
+    <section class="section">
+      <div class="container estimate-box">
+        <div class="copy-stack">
+          <div class="eyebrow">Fast estimate workflow</div>
+          <h2>Need a Prime estimate fast? Text us in 3 easy steps.</h2>
+          <p>
+            Our administrative desk will triage your request and issue a digital estimate rapidly.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="sms:+16232278884?&body=Hi%20Prime%20Handyman%20Service%2C%20I%27m%20sending%20photos%20for%20an%20estimate.%20My%20ZIP%20code%20is%3A%20">Start Text Estimate</a>
+            <a class="btn btn-secondary" href="mailto:bryan.lewis@prime-handyman-az.com?subject=Prime%20Handyman%20Estimate%20Request">Email Request</a>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <p><strong>Snap:</strong> Take 2 to 3 clear photos of your specific project or repair area.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <p><strong>Detail:</strong> Add a brief description of what you need completed.</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <p><strong>Send:</strong> Text the photos, notes, and your service ZIP code to <strong>623-227-8884</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section" style="background: var(--soft);">
+      <div class="container">
+        <div class="copy-stack" style="max-width: 760px;">
+          <div class="eyebrow">Recent work</div>
+          <h2>Real repairs. Real details. Real cleanup.</h2>
+          <p class="muted">
+            Photo documentation helps you see the issue, understand the fix, and verify the finished work.
+          </p>
+        </div>
+
+        <div class="gallery">
+          <figure>
+            <img src="/assets/tv-wall-mount.jpg" alt="Level TV wall mount installation by Prime Handyman Service" loading="lazy" />
+            <figcaption>TV wall mount installation</figcaption>
+          </figure>
+          <figure>
+            <img src="/assets/toilet-seal-caulk.jpg" alt="Clean toilet base seal and bathroom repair" loading="lazy" />
+            <figcaption>Bathroom fixture finish work</figcaption>
+          </figure>
+          <figure>
+            <img src="/assets/stucco-door-repair.jpg" alt="Before and after exterior stucco and door frame repair" loading="lazy" />
+            <figcaption>Exterior stucco and trim repair</figcaption>
+          </figure>
+          <figure>
+            <img src="/assets/murphy-bed-assembly.jpg" alt="Armoire styled Murphy bed with charging station assembled" loading="lazy" />
+            <figcaption>Murphy bed assembly</figcaption>
+          </figure>
+          <figure>
+            <img src="/assets/kitchen-sink-fixture.jpg" alt="Kitchen sink and faucet fixture installation" loading="lazy" />
+            <figcaption>Kitchen fixture update</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section pricing">
+      <div class="container">
+        <div class="copy-stack" style="max-width: 780px;">
+          <div class="eyebrow">Transparent pricing</div>
+          <h2>No mystery invoices. No hidden material markup.</h2>
+          <p class="muted">
+            Clear pricing helps you approve the work with confidence before Prime starts.
+          </p>
+        </div>
+
+        <div class="price-grid">
+          <div class="price-card">
+            <h3>Service Call</h3>
+            <div class="price">$139</div>
+            <p class="muted">Covers vehicle dispatch, tool staging, and includes the first full hour of on-site labor.</p>
+          </div>
+          <div class="price-card">
+            <h3>After First Hour</h3>
+            <div class="price">$99/hr</div>
+            <p class="muted">Billed transparently in efficient 15-minute increments after the first hour.</p>
+          </div>
+          <div class="price-card">
+            <h3>Materials</h3>
+            <div class="price">At Cost</div>
+            <p class="muted">Materials are billed at documented cost with zero hidden markup.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <div class="copy-stack">
+          <div class="eyebrow">The Prime standard</div>
+          <h2>Built to be the antidote to the unreliable handyman.</h2>
+        </div>
+        <div class="copy-stack muted">
+          <p>
+            Bryan Lewis brings military-grade discipline, transparent communication, and job-site management experience to residential and investment property work across Glendale and the West Valley.
+          </p>
+          <p>
+            Every completed job is supported by Prime’s standard 30-day labor-only workmanship warranty. We text before arrival, protect surrounding areas, take before-and-after validation photos, and clean up before we leave.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section" style="background: var(--soft);">
+      <div class="container">
+        <div class="copy-stack" style="max-width: 760px;">
+          <div class="eyebrow">Common questions</div>
+          <h2>Clear answers before you book.</h2>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>How fast can I get an estimate?</summary>
+            <p>For many small repairs, the fastest path is to text 2 to 3 clear photos, a short description, and your service ZIP code to 623-227-8884. The admin desk will triage your request and respond with next steps.</p>
+          </details>
+
+          <details>
+            <summary>Do I need to be home?</summary>
+            <p>For occupied homes, we coordinate access and arrival expectations in advance. For rentals or investor properties, photo documentation can help simplify the process.</p>
+          </details>
+
+          <details>
+            <summary>What work is outside Prime’s standard scope?</summary>
+            <p>Prime focuses on itemized repairs, maintenance, upgrades, and direct like-for-like replacements where permitted. Major structural additions, full home rewires, large mainline plumbing overhauls, and permit-required work are outside standard handyman scope.</p>
+          </details>
+
+          <details>
+            <summary>What does the workmanship warranty cover?</summary>
+            <p>The Prime Workmanship Warranty is a standard 30-day labor-only warranty on completed work. Materials, customer-supplied parts, pre-existing damage, and unrelated failures are not included.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final">
+      <div class="container">
+        <div class="eyebrow">Ready to clear the repair list?</div>
+        <h2>Text the photos today. Get the fix moving.</h2>
+        <p>
+          Prime’s schedule fills as local repair requests come in. Send your photos, notes, and ZIP code now so your project can be reviewed and placed into the intake queue.
+        </p>
+        <div class="hero-actions" style="justify-content:center; margin-top:26px;">
+          <a class="btn btn-primary" href="sms:+16232278884?&body=Hi%20Prime%20Handyman%20Service%2C%20I%27d%20like%20to%20start%20an%20estimate.%20My%20ZIP%20code%20is%3A%20">Text My Project</a>
+          <a class="btn btn-secondary" href="tel:+16232278884">Call Now</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="/assets/PHS%20Transparent%20logo.png" alt="Prime Handyman Service LLC logo" />
+          <span>Prime Handyman Service LLC</span>
+        </div>
+        <p>Everyday Fixes. Prime Quality.</p>
+        <p class="compliance">
+          Compliance note: add ROC license number here if applicable. If operating under Arizona handyman exemption, display the required wording: “not a licensed contractor.”
+        </p>
+      </div>
+
+      <div>
+        <h3 style="color:white;">Contact</h3>
+        <p><a href="tel:+16232278884">623-227-8884</a></p>
+        <p><a href="mailto:bryan.lewis@prime-handyman-az.com">bryan.lewis@prime-handyman-az.com</a></p>
+        <p>6434 W Cavalier Dr<br />Glendale, AZ 85301</p>
+      </div>
+
+      <div>
+        <h3 style="color:white;">Service Area</h3>
+        <p>Glendale, AZ</p>
+        <p>Greater West Valley region</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-cta" aria-label="Mobile contact actions">
+    <a class="btn btn-primary" href="tel:+16232278884">Call</a>
+    <a class="btn btn-primary" href="sms:+16232278884?&body=Hi%20Prime%20Handyman%20Service%2C%20I%27d%20like%20an%20estimate.%20My%20ZIP%20code%20is%3A%20">Text Photos</a>
+  </div>
 </body>
-
 </html>
