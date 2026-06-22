@@ -98,6 +98,9 @@
                 <a href="gallery.html">Gallery</a>
                 <a href="about.html">About</a>
                 <a href="request-estimate.html" class="cta-nav">Request Estimate</a>
+				<head>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
             </nav>
 
             <div class="header-cta">
@@ -899,5 +902,85 @@
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 </body>
+<div class="form-container">
+    <h2>Get an Estimate</h2>
+    <form id="contactForm">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" required autocomplete="family-name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" required autocomplete="email">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" autocomplete="tel">
+        </div>
+        <div class="form-group">
+            <label for="message">Message / Scope of Request</label>
+            <textarea id="message" rows="4" placeholder="Describe the job requirements..."></textarea>
+        </div>
+        <button type="submit" id="submitBtn">Submit Request</button>
+        <div id="statusMessage" class="status-msg"></div>
+    </form>
+</div>
+<script>
+        // Initialize Supabase
+        const SUPABASE_URL = "https://your-project-id.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...";
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMessage = document.getElementById('statusMessage');
+        const formInputs = form.querySelectorAll('input, textarea');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending Request...";
+            statusMessage.className = "status-msg"; 
+            statusMessage.style.display = "none";
+            formInputs.forEach(input => input.disabled = true);
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            
+            const payload = {
+                brand_slug: 'prime-handyman',
+                customer_name: `${firstName} ${lastName}`.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim() || null,
+                message: document.getElementById('message').value.trim() || null
+            };
+
+            try {
+                const { error } = await _supabase.from('contact_submissions').insert([payload]);
+                if (error) throw error;
+
+                statusMessage.textContent = "Thank you! Your request has been sent successfully.";
+                statusMessage.className = "status-msg status-success";
+                form.reset(); 
+            } catch (err) {
+                console.error("[Database Integration Failure]:", err);
+                statusMessage.textContent = "Unable to submit your request at this time.";
+                statusMessage.className = "status-msg status-error";
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Submit Request";
+                formInputs.forEach(input => input.disabled = false);
+            }
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
