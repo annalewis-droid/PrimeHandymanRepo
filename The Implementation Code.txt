@@ -1,0 +1,201 @@
+The Implementation Code
+Open your website's contact page layout in Notepad++ and inject the following structures.
+HTML Form Structure
+Paste this form element where your current contact interface resides. Ensure you include the official Supabase and Cloudflare Turnstile CDN scripts in your document <head> or right before the closing </body> tag.
+
+HTML
+<!-- Official Supabase SDK and Cloudflare Turnstile Injections -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<div class="form-wrapper">
+  <!-- Status Feedback Interfaces -->
+  <div id="submission-success" style="display: none; color: #10b981; font-weight: bold; margin-bottom: 1rem;">
+    Thank you! Your project request has been securely logged. We will review your scope shortly.
+  </div>
+  <div id="submission-error" style="display: none; color: #ef4444; font-weight: bold; margin-bottom: 1rem;"></div>
+
+  <form id="prime-lead-form">
+    <div>
+      <label>First Name *</label>
+      <input type="text" id="form-firstname" required />
+    </div>
+    <div>
+      <label>Last Name *</label>
+      <input type="text" id="form-lastname" required />
+    </div>
+    <div>
+      <label>Email Address *</label>
+      <input type="email" id="form-email" required />
+    </div>
+    <div>
+      <label>Phone Number</label>
+      <input type="tel" id="form-phone" />
+    </div>
+    <div>
+      <label>Project Details / Message *</label>
+      <textarea id="form-message" required rows="4"></textarea>
+    </div>
+
+    <!-- Anti-Spam Security Guardrail -->
+    <div class="cf-turnstile" data-sitekey="YOUR_CLOUDFLARE_TURNSTILE_SITE_KEY"></div>
+
+    <button type="submit" id="form-submit-btn">Submit Inquiry</button>
+  </form>
+</div>
+
+
+Paste this form element where your current contact interface resides. Ensure you include the official Supabase and Cloudflare Turnstile CDN scripts in your document <head> or right before the closing </body> tag.
+
+
+EXPLANATION
+
+Open up your contact page HTML file (usually contact.html or index.html if it's a single-page site) in Notepad++, and let's handle this in two clean steps: inserting the security/database scripts, and then pasting the form itself.
+
+Step 1: Include the CDN Scripts
+Scroll to the very bottom of your file in Notepad++. Look for the closing </body> tag. Right before that tag, paste these two script lines.
+
+Placing them here ensures your website pages load incredibly fast for users because the browser won't stop to download these external tools until the visual parts of your page are already rendered.
+
+Step 2: Paste the HTML Form Structure
+Now, look through your HTML file to find where your current contact form is located. Select your old form element completely and replace it with this structured code block.
+
+Note: Don't worry about the style yet—this markup uses clean, standard class names so your existing CSS rules can hook right into it.
+
+Verification Step
+Press Ctrl + S in Notepad++ to save your file.
+
+Once this is saved, let me know. Do you already have your Cloudflare Turnstile site key ready to paste into that data-sitekey field, or should we write the JavaScript controller next that links everything straight to Supabase?
+
+1. We will implement a direct client-to-API integration to capture leads with zero server overhead.Below is the definitive implementation strategy to securely connect your Cloudflare Pages frontend directly to your Supabase PostgreSQL instance using strictly modern Vanilla JavaScript and HTML5.1. Database Schema & Security ContextYour database relies on the contact_submissions table to capture Phase 1 website contact form leads. This public lead capture table utilizes specific columns, including brand_slug, customer_name, email, phone, and message. Because we are exposing the SUPABASE_URL and SUPABASE_ANON_KEY on the client side, our security posture relies entirely on Row-Level Security (RLS).  Your database is already configured with the allow_public_insert RLS policy, which explicitly permits anonymous public write access to the contact_submissions table.  Critical Guardrail: To prevent automated bot spam from abusing this exposed endpoint, you must implement Cloudflare Turnstile alongside this form.2. Frontend Implementation: HTML5 StructureWe will rely heavily on native HTML5 validation constraints (required, type="email", type="tel") to act as our first tier of defense before any JavaScript executes.
+	<!-- Include Supabase and Turnstile via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<div class="form-container">
+  <!-- Status Messages -->
+  <div id="form-success" style="display: none;" class="success-message">
+    Thank you! Your inquiry has been securely submitted. We will contact you shortly.
+  </div>
+  <div id="form-error" style="display: none;" class="error-message"></div>
+
+  <form id="prime-contact-form">
+    <div class="input-group">
+      <label for="firstName">First Name *</label>
+      <input type="text" id="firstName" name="firstName" required />
+    </div>
+
+    <div class="input-group">
+      <label for="lastName">Last Name *</label>
+      <input type="text" id="lastName" name="lastName" required />
+    </div>
+
+    <div class="input-group">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+
+    <div class="input-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" />
+    </div>
+
+    <div class="input-group">
+      <label for="message">How can we help? *</label>
+      <textarea id="message" name="message" required rows="4"></textarea>
+    </div>
+
+    <!-- Cloudflare Turnstile Widget -->
+    <div class="cf-turnstile" data-sitekey="YOUR_CLOUDFLARE_TURNSTILE_SITE_KEY"></div>
+
+    <button type="submit" id="submit-btn">Submit Inquiry</button>
+  </form>
+</div>
+2. Frontend Implementation: Vanilla JavaScript Controller
+This script initializes the Supabase client, intercepts the form submission, manages the multi-state UI (Submitting, Success, Failure), and structures the exact payload required by your contact_submissions contract.
+3. Architectural ReviewZero Frameworks: Completely devoid of build steps. Highly cacheable on Cloudflare.Contract Alignment: The contact_submissions table interface receives exactly the expected data types and properties, honoring the mandate to concatenate the user's name into customer_name.  Error Handling: Implements rigid two-tier validation with clear feedback cycles preventing duplicate button clicks and gracefully catching network/database failures.
+	// Initialize Supabase Client
+// Note: These keys will be visible in the source code on Cloudflare Pages.
+const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('prime-contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('form-success');
+  const errorMsg = document.getElementById('form-error');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // 1. Validate Turnstile (Anti-Spam Guardrail)
+    const formData = new FormData(form);
+    const turnstileToken = formData.get('cf-turnstile-response');
+    
+    if (!turnstileToken) {
+        showError('Please complete the anti-spam verification.');
+        return;
+    }
+
+    // 2. Set Submitting State
+    setLoadingState(true);
+    errorMsg.style.display = 'none';
+    successMsg.style.display = 'none';
+
+    // 3. Construct Data Contract Payload
+    // Concatenating First and Last name to satisfy the singular customer_name string property priority
+    const firstName = formData.get('firstName').trim();
+    const lastName = formData.get('lastName').trim();
+    const customerName = `${firstName} ${lastName}`;
+
+    const payload = {
+      brand_slug: 'prime-handyman', // Mandatory default for multi-tenant tracking
+      customer_name: customerName,
+      email: formData.get('email').trim(),
+      phone: formData.get('phone').trim() || null,
+      message: formData.get('message').trim()
+    };
+
+    // 4. Asynchronous Database Insertion
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([payload]);
+
+      if (error) throw error;
+
+      // 5. Set Success State
+      form.reset();
+      turnstile.reset(); // Reset the Turnstile widget
+      successMsg.style.display = 'block';
+
+    } catch (error) {
+      // 6. Set Failure State
+      console.error('Supabase Transaction Failure:', error);
+      showError('Our system encountered an issue processing your request. Please try again later.');
+    } finally {
+      // Revert UI from Submitting State
+      setLoadingState(false);
+    }
+  });
+
+  // UI State Handlers
+  function setLoadingState(isLoading) {
+    if (isLoading) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      // Disable inputs to prevent duplicate submission mutations
+      Array.from(form.elements).forEach(el => el.disabled = true);
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Inquiry';
+      Array.from(form.elements).forEach(el => el.disabled = false);
+    }
+  }
+
+  function showError(message) {
+    errorMsg.textContent = message;
+    errorMsg.style.display = 'block';
+  }
+});
