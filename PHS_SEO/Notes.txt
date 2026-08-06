@@ -1,0 +1,28 @@
+If you're new to indexing or SEO, or have a small site, here's how to get started:
+
+Decide whether you need to use this report. If your site has fewer than 500 pages, you probably don't need to use this report. Instead, use the following Google searches to see if key pages (or any pages) on your site are indexed. Only if these searches return no results for your site and you are willing to spend the time to fully understand this report should you use the Page indexing report to see why your site isn't indexed (see the troubleshooting section).
+See a sample of pages from your site that Google knows about:
+Syntax: site:<<site_root_domain_or_path>>
+Examples: site:example.com or site:example.com/petstore
+Search for subjects covered by your site (search for terms from your most important pages, including your homepage):
+Syntax: site:<<site_root_domain_or_path>> term1 term2
+Example: site:example.com/petstore iguanas zebras.
+Search for the exact URL of a page on your site to see whether Google has indexed it (search for the most important pages on your site, including your homepage):
+Syntax: site:<<exact-url>
+Example: site:http://example.com/petstore/gerbil
+Read this short user guide for a quick, easy explanation of this report.
+If you want to delve deeper:
+Read how Google Search works. If you don't understand indexing, this report will confuse or frustrate you–trust us.
+This report isn't used to investigate the index status of specific pages. To find the index status of a specific page, use the URL Inspection tool.
+What to look for in this report:
+Are all of your important URLs green (indexed)? Most sites have at least a few unindexed pages, but all of your important pages should be indexed. Remember that duplicate URLs shouldn't be indexed. Check the index status of your homepage and key pages using the URL Inspection tool. Note that the list of example URLs in the report is limited to 1,000 items, and isn't guaranteed to show all URLs in a given status, even when less than 1,000 items.
+Are the gray (not indexed) URLs not indexed for good reasons? It's fine for a URL not to be indexed for the right reasons—for example, an expected robots.txt rule on your site, a noindex tag on the page, a duplicate URL, or a 404 for a page that you've removed and have no replacement for.
+If the total URL count in this report is much smaller than your site's page count, then Google isn't finding pages on your site. Some possible reasons for this:
+The missing pages, or your site, is new. It can take a week or so for Google to start crawling and indexing a new page or site. If your page or site is new, wait a few days for Google to find and crawl it. In an urgent situation, or if waiting doesn't seem to be working, you can explicitly ask Google to crawl individual pages.
+The missing pages aren't findable by Google. Google needs a way to find a page in order to crawl it. This means that it must be linked from a known page, or from a sitemap. For a new website, the best first step is to request indexing of your homepage, which should start Google crawling your website. For missing parts of a site, make sure they are linked properly. If you are using a site hosting service such as Wix or SquareSpace, they will probably tell Google about any new pages, once you publish them: check your site host's documentation to learn how to publish your pages and make them findable by search engines.
+Read the documentation for your specific indexing issue to understand and, if necessary, fix the issue. Skipping the documentation will cost you more effort and time in the long run than reading the docs.
+What not to look for:
+Don't expect every URL on your site to be indexed. Some URLs might be duplicates or might not contain meaningful information. Just be sure that the key pages on your site are indexed.
+Non-indexed URLs can be fine. Read and understand the specific reason for each non-indexed URL to confirm that the page shouldn't be indexed.
+Don't expect totals here to match exactly your estimate of the number of URLs on your site. The indexed + not indexed totals above the chart are complete and accurate from Google's perspective, but small discrepancies can occur for various reasons.
+Just because a page is indexed doesn't guarantee that it will show up in your search results. Search results are customized for each user's search history, location, and many other variables, so even if a page is indexed, it won't show up in every search, or in the same ranking when it does. Therefore, if Search Console says a URL is indexed, but it doesn't turn up in your search results, you can assume that it is indexed and eligible to appear in search results.

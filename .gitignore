@@ -1,0 +1,10 @@
+# Visual Studio / IDE junk
+.vs/
+OpenCodeFiles/
+
+# Node / local tooling
+node_modules/
+
+# OS files
+Thumbs.db
+.DS_Store
